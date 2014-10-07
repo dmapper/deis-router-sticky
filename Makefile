@@ -1,4 +1,4 @@
-include ../includes.mk
+include ./includes.mk
 
 COMPONENT = router
 IMAGE = $(IMAGE_PREFIX)$(COMPONENT):$(BUILD_TAG)
