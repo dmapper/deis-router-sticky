@@ -3,6 +3,7 @@
 export VERSION_NGINX=nginx-1.6.2
 export VERSION_TCP_PROXY=0.4.5
 
+
 export BUILD_PATH=/tmp/build
 
 # nginx installation directory
@@ -22,6 +23,7 @@ apt-get update \
 # grab the source files
 curl -sSL http://nginx.org/download/$VERSION_NGINX.tar.gz -o $BUILD_PATH/$VERSION_NGINX.tar.gz
 curl -sSL https://github.com/yaoweibin/nginx_tcp_proxy_module/archive/v$VERSION_TCP_PROXY.tar.gz -o $BUILD_PATH/$VERSION_TCP_PROXY.tar.gz
+git clone https://bitbucket.org/nginx-goodies/nginx-sticky-module-ng.git $BUILD_PATH/nginx-sticky-module-ng
 
 # expand the source files
 tar xzf $VERSION_NGINX.tar.gz
@@ -51,4 +53,5 @@ patch -p1 < $BUILD_PATH/nginx_tcp_proxy_module-$VERSION_TCP_PROXY/tcp.patch
   --with-mail \
   --with-mail_ssl_module \
   --add-module=$BUILD_PATH/nginx_tcp_proxy_module-$VERSION_TCP_PROXY \
+  --add-module=$BUILD_PATH/nginx-sticky-module-ng
   && make && make install
