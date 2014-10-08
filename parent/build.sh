@@ -17,7 +17,7 @@ cd $BUILD_PATH
 
 # install required packages to build
 apt-get update \
-  && apt-get install -y patch curl build-essential \
+  && apt-get install -y patch curl build-essential git\
   libpcre3 libpcre3-dev libssl-dev libgeoip-dev zlib1g-dev
 
 # grab the source files
@@ -53,5 +53,5 @@ patch -p1 < $BUILD_PATH/nginx_tcp_proxy_module-$VERSION_TCP_PROXY/tcp.patch
   --with-mail \
   --with-mail_ssl_module \
   --add-module=$BUILD_PATH/nginx_tcp_proxy_module-$VERSION_TCP_PROXY \
-  --add-module=$BUILD_PATH/nginx-sticky-module-ng
+  --add-module=$BUILD_PATH/nginx-sticky-module-ng \
   && make && make install
